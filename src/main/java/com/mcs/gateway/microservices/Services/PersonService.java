@@ -11,25 +11,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonService {
 
+    //init data person sebanyak 2 record
     private List<Person> persons = new ArrayList<Person>(Arrays.asList(
         new Person(1L,"Albert","Einstein",50),
         new Person(2L,"Mona","Liza",30)
     ));
 
-    public List<Person> findAll() {
+    public List<Person> findAll() { //tampilkan semua data
         return persons;
     }
 
-    public Person findById(Long id) {
+    public Person findById(Long id) { //tampilakn data berdasarkan id
         return persons.stream().filter(p -> p.getId().equals(id)).findFirst().get();
     }
 
-    public Person saveNew(Person person) {
+    public Person saveNew(Person person) { //simpan data baru
         persons.add(person);
         return person;
     }
 
-    public Person update(Person person, Long id) {
+    public Person update(Person person, Long id) { //update data berdasarkan id
         int counter = 0;
         for(Person p: persons) {
             if(p.getId().equals(id)) {
@@ -40,7 +41,7 @@ public class PersonService {
         return person;
     }
 
-    public void delete(Long id) {
+    public void delete(Long id) { //hapus data
         persons.removeIf(p -> p.getId().equals(id));
     }
     
